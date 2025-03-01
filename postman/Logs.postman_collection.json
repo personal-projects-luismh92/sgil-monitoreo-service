@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "a5e0916c-d11d-40e0-b66a-f9a779aa79df",
+		"name": "Logs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41099583"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"log\": \"INFO\",\n    \"service\": \"auth-service\",\n    \"event\": \"UserLogin\",\n    \"error\": null,\n    \"method\": \"POST\",\n    \"path\": \"/api/login\",\n    \"response_time\": \"120ms\",\n    \"timestamp\": \"2025-02-28T12:34:56Z\",\n    \"extra_data\": {\n      \"user_id\": 123,\n      \"ip_address\": \"192.168.1.10\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/health"
+			},
+			"response": []
+		},
+		{
+			"name": "Log 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"log\": \"INFO\",\n    \"service_name\": \"auth-service\",\n    \"event\": \"UserLogin\",\n    \"error\": \"StockCheck\",\n    \"method\": \"POST\",\n    \"path\": \"/api/login\",\n    \"response_time\": \"120ms\",\n    \"timestamp\": \"2025-02-28T12:34:56Z\",\n    \"extra_data\": {\n      \"user_id\": 123,\n      \"ip_address\": \"192.168.1.10\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/logs"
+			},
+			"response": []
+		},
+		{
+			"name": "Log 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"log\": \"WARNING\",\n    \"service_name\": \"order-service\",\n    \"event\": \"StockCheck\",\n    \"error\": null,\n    \"method\": \"GET\",\n    \"path\": \"/api/orders/stock\",\n    \"response_time\": \"250ms\",\n    \"timestamp\": \"2025-02-28T13:00:12Z\",\n    \"extra_data\": {\n      \"product_id\": 456,\n      \"stock_available\": false\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/logs"
+			},
+			"response": []
+		},
+		{
+			"name": "Log 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"log\": \"ERROR\",\n    \"service_name\": \"payment-service\",\n    \"event\": \"PaymentFailed\",\n    \"error\": \"Insufficient funds\",\n    \"method\": \"POST\",\n    \"path\": \"/api/payments/process\",\n    \"response_time\": \"500ms\",\n    \"timestamp\": \"2025-02-28T14:15:30Z\",\n    \"extra_data\": {\n      \"user_id\": 789,\n      \"order_id\": 555,\n      \"payment_gateway\": \"Stripe\"\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/logs"
+			},
+			"response": []
+		},
+		{
+			"name": "Log 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"log\": \"CRITICAL\",\n    \"service_name\": \"database-service\",\n    \"event\": \"DBConnectionLost\",\n    \"error\": \"Database connection timeout\",\n    \"method\": \"N/A\",\n    \"path\": \"N/A\",\n    \"response_time\": \"N/A\",\n    \"timestamp\": \"2025-02-28T15:45:00Z\",\n    \"extra_data\": {\n      \"database\": \"PostgreSQL\",\n      \"server\": \"db-server-01\",\n      \"retry_attempts\": 3\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/logs"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8090",
+			"type": "string"
+		}
+	]
+}
