@@ -44,15 +44,16 @@ make reset
 ```
 📂 sgil-monitoreo-service/       # Folder raiz
 │
-│── 📂 app/                    # Contains the main application files
+│── 📂 app/                    # Contiene los archivos principales del proyecto
 │   │── 📂 models/             # Modelos SQLAlchemy
-│   │── 📂 schemas/            # Esquemas Pydantic
 │   │── 📂 repositories/       # Lógica de acceso a BD
-│   │── 📂 services/           # Lógica de negocio
 │   │── 📂 routers/            # Endpoints de la API
-│   │── 📂 core/               # Configuración del sistema
-│   │   │── database.py        # Configuración de la base de datos
+│   │── 📂 schemas/            # Esquemas Pydantic
+│   │── 📂 services/           # Lógica de negocio
 │   │── main.py                # Punto de entrada de FastAPI
+│── 📂 postman                 # Colección del servicio de monitoreo
+│── docker-compose.yml          # Archivo de configuración de Docker Compose
+│── Dockerfile                  # Archivo de creación de imagen del contenedor
 │── requirements.txt           # Dependencias del proyecto
 │── .env                       # Variables de entorno (si usas PostgreSQL, MySQL, etc.)
 │── alembic/                   # Migraciones de base de datos (opcional)
