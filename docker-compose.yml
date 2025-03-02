@@ -1,7 +1,8 @@
 version: '3.9'
 
 services:
-  sgil-proveedores-service:
+  sgil-monitoreo-service:
+    container_name: sgil-monitoreo-service
     build: .
     ports:
       - "8090:8090"
@@ -39,6 +40,23 @@ services:
       interval: 30s
       timeout: 20s
       retries: 5
+
+  
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
 
 
 volumes:
