@@ -6,7 +6,7 @@ from common_for_services.database.connection import engine, Base, DB_NAME, DB_PA
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.sql import text
 from app.routers import monitor, log
-
+from prometheus_fastapi_instrumentator import Instrumentator
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -69,11 +69,20 @@ app.include_router(log.router, prefix="/logs", tags=["Logs"])
 app.include_router(monitor.router, prefix="/monitor", tags=["Monitoring"])
 
 
+Instrumentator().instrument(app).expose(app)
+
+
+
 # Health Check Endpoint
-@app.get("/health")
-def health_check():
+@app.get("/documentation", tags=["General"])
+async def root():
     """Ruta principal de la API"""
-    return {"status": "ok", "message": "API monitoreo funcionando correctamente"}
+    return {
+        "message": "Bienvenido a la API de Proveedores 🚀",
+        "docs": "/docs",
+        "redoc": "/redoc",
+        "version": app.version
+    }
 
 
 @app.on_event("startup")
