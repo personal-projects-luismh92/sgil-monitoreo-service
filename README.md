@@ -83,7 +83,7 @@ docker-compose up --build
 docker system prune
 ```
 
-### Eliminar los contennedores & volumenes
+### Eliminar los contenedores & volumenes
 ```
 docker-compose down -v
 ```
