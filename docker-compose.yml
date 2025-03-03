@@ -2,7 +2,7 @@ version: '3.9'
 
 networks:
   sgil_network:
-    driver: bridge
+    external: true
 
 services:
   sgil-monitoreo-service:
