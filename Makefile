@@ -17,7 +17,7 @@ run:
 	export DB_HOST_URL="127.0.0.1:5432"; \
 	export DB_NAME="sgil-monitoreo"; \
 	export DB_USER="postgres"; \
-	export DB_PASSWORD="29062013"; \
+	export DB_PASSWORD="12345"; \
 	. $(VENV_DIR)/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 8090 --reload
 
 # Ejecutar pruebas con pytest
