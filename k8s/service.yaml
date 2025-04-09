@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sgil-monitoreo-service
+  namespace: default
+spec:
+  selector:
+    app: monitoreo
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
+  type: ClusterIP 

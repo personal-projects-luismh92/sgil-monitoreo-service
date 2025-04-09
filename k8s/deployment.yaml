@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitoreo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monitoreo
+  template:
+    metadata:
+      labels:
+        app: monitoreo
+    spec:
+      containers:
+        - name: monitoreo
+          image: 996241846882.dkr.ecr.us-east-1.amazonaws.com/sgil-monitoreo-service:latest
+          ports:
+            - containerPort: 8090
+          env:
+            - name: DB_HOST_URL
+              value: "host.docker.internal"
+            - name: DB_NAME
+              value: "sgil-monitoreo"
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "123456"
+            - name: DB_PORT
+              value: "5432"
+
+      imagePullSecrets:
+        - name: regcred
