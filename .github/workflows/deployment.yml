@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - develop
-  workflow_dispatch:  # Allows manual execution from GitHub UI
+  workflow_dispatch: # Allows manual execution from GitHub UI
 
 permissions:
-  id-token: write  # Required for OIDC authentication
-  contents: read   # Read access for the repo
+  id-token: write # Required for OIDC authentication
+  contents: read # Read access for the repo
 
 env:
   AWS_REGION: us-east-1
@@ -28,7 +28,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          aws-region: us-east-1  
+          aws-region: us-east-1
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -59,12 +59,15 @@ jobs:
 
       - name: Update Kubeconfig
         run: aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
-    
+
       - name: Deploy to EKS
+        env:
+          DB_HOST_URL: ${{ secrets.DB_HOST_URL }}
         run: |
           if [ -d "k8s" ]; then
             echo "Applying Kubernetes manifests..."
-            kubectl apply -f k8s/deployment.yaml && \
+            export DB_HOST_URL=$DB_HOST_URL
+            envsubst < k8s/deployment.yaml | kubectl apply -f - && \
             kubectl apply -f k8s/service.yaml && \
             echo "Restarting deployment..."
             kubectl rollout restart deployment monitoreo
@@ -73,4 +76,3 @@ jobs:
             echo "Error: Kubernetes directory 'k8s' not found."
             exit 1
           fi
-
