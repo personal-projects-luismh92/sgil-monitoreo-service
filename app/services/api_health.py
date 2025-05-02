@@ -9,20 +9,23 @@ logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger("monitoring_service")
 
 # Definir APIs a monitorear
-BODEGAS_URL = os.getenv(
-    "BODEGAS_URL", "http://sgil-inventario-service:80/inventario/bodegas/health")
 USUARIOS_URL = os.getenv(
     "USUARIOS_URL", "http://sgil-usuarios-service:80/usuarios/health")
-PEDIDOS_URL = os.getenv(
-    "PEDIDOS_URL", "http://sgil-pedidos-service:80/pedidos/health")
+CLIENTES_URL = os.getenv(
+    "CLIENTES_URL", "http://sgil-clientes-service:80/clientes/health")
 VENDEDORES_URL = os.getenv(
     "PEDIDOS_URL", "http://sgil-vendedores-service:80/vendedores/health")
+PEDIDOS_URL = os.getenv(
+    "PEDIDOS_URL", "http://sgil-pedidos-service:80/pedidos/health")
+PRODUCTOS_URL = os.getenv(
+    "PRODUCTOS_URL", "http://sgil-inventario-service:80/inventario/productos/health")
 # Definir las URLs de las APIs a monitorear
 API_SERVICES = [
     {"name": "Usuarios", "url": USUARIOS_URL},
+    {"name": "Clientes", "url": CLIENTES_URL},
     {"name": "Pedidos", "url": PEDIDOS_URL},
     {"name": "Vendedores", "url": VENDEDORES_URL},
-    {"name": "Bodegas", "url": BODEGAS_URL},
+    {"name": "Productos", "url": PRODUCTOS_URL},
 ]
 
 
