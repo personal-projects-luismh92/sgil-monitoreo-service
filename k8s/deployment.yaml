@@ -19,13 +19,13 @@ spec:
             - containerPort: 8090
           env:
             - name: DB_HOST_URL
-              value: "host.docker.internal"
+              value: "${DB_HOST_URL}"
             - name: DB_NAME
-              value: "sgil-monitoreo"
+              value: "db_monitoreo"
             - name: DB_USER
               value: "postgres"
             - name: DB_PASSWORD
-              value: "123456"
+              value: "postgres"
             - name: DB_PORT
               value: "5432"
 
